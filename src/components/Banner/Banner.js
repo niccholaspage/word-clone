@@ -1,6 +1,6 @@
 import React from "react";
 
-function Banner({status, guessCount, answer}) {
+function Banner({status, guessCount, answer, onRestartGame}) {
   return (
     <div className={`${status} banner`}>
       <p>
@@ -15,6 +15,7 @@ function Banner({status, guessCount, answer}) {
         </>
         }
       </p>
+      <button onClick={onRestartGame}>Restart Game</button>
     </div>
   );
 }

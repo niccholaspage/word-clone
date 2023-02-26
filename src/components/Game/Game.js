@@ -10,14 +10,16 @@ import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import Banner from '../Banner/Banner';
 import VisualKeyboard from '../VisualKeyboard/VisualKeyboard';
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
   const [gameState, setGameState] = React.useState("playing");
+  const [answer, setAnswer] = React.useState(() => sample(WORDS));
+
+  function restartGame() {
+    setGuesses([]);
+    setGameState("playing");
+    setAnswer(sample(WORDS));
+  }
 
   const handleSubmitGuess = (label) => {
     const result = checkGuess(label, answer);
@@ -44,7 +46,7 @@ function Game() {
       <GuessResults guesses={guesses} />
       <GuessInput disabled={gameState !== "playing"} onSubmitGuess={handleSubmitGuess} />
       <VisualKeyboard guesses={guesses} />
-      {gameState !== "playing" && <Banner status={bannerStatus} guessCount={guesses.length} answer={answer} />}
+      {gameState !== "playing" && <Banner onRestartGame={restartGame} status={bannerStatus} guessCount={guesses.length} answer={answer} />}
     </>
   );
 }
