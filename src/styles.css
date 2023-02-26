@@ -124,6 +124,26 @@ h1 {
   --radius: 0px 0px 0px 4px;
 }
 
+.keyboard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.keyboard .row {
+  display: flex;
+  gap: 8px;
+}
+
+.keyboard .cell {
+  border-radius: 4px;
+  background-color: var(--color-gray-900);
+  width: 2rem;
+  height: 2rem;
+  padding: 1rem;
+}
+
 .cell.correct {
   background: var(--color-success);
   border-color: var(--color-success);
