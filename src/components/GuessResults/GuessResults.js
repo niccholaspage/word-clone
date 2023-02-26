@@ -11,11 +11,14 @@ function GuessResults({guesses}) {
 
         return (
           <p key={index} className="guess">
-            {range(0, 5).map(column => (
-              <span key={column} className="cell">
-                {guess !== undefined ? guess.label.charAt(column) : undefined}
-              </span>
-              )
+            {range(0, 5).map(column => {
+              const additionalClass = guess !== undefined ? " " + guess.result[column].status : "";
+              return (
+                <span key={column} className={"cell" + additionalClass}>
+                  {guess !== undefined ? guess.label.charAt(column) : undefined}
+                </span>
+              );
+            }
             )}
           </p>
         );
